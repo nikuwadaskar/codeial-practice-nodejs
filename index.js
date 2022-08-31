@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 8000;
-const db=require("./config/mongoose")
+const db = require("./config/mongoose");
 const expressLatout = require("express-ejs-layouts");
 
 app.use(express.static("./assets"));
