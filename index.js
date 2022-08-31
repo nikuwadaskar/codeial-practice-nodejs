@@ -1,19 +1,27 @@
-const express = require('express');
+const express = require("express");
 const app = express();
 const port = 8000;
+const expressLatout = require("express-ejs-layouts");
 
+app.use(express.static("./assets"));
+
+// extract style and script from sub pages into the layout
+
+app.set("layout extractStyles", true);
+app.set("layout extractScripts", true);
+
+app.use(expressLatout);
 // use express router
-app.use('/', require('./routes'));
+app.use("/", require("./routes"));
 
 // set up the view engine
-app.set('view engine', 'ejs');
-app.set('views', './views');
+app.set("view engine", "ejs");
+app.set("views", "./views");
 
+app.listen(port, function (err) {
+  if (err) {
+    console.log(`Error in running the server: ${err}`);
+  }
 
-app.listen(port, function(err){
-    if (err){
-        console.log(`Error in running the server: ${err}`);
-    }
-
-    console.log(`Server is running on port: ${port}`);
+  console.log(`Server is running on port: ${port}`);
 });
